@@ -1,0 +1,11 @@
+﻿@using VacationCalendar.Properties
+@model Enum
+
+@if ( EnumHelper.IsValidForEnumHelper( ViewData.ModelMetadata ) )
+{
+	@Html.EnumDropDownListFor( model => model, Resources.OptionLabel, htmlAttributes: new { @class = "form-control" } )
+}
+else
+{
+	@Html.TextBoxFor( model => model, htmlAttributes: new { @class = "form-control" } )
+}

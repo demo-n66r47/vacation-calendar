@@ -1,0 +1,56 @@
+﻿@using VacationCalendar.Properties
+
+@model VacationCalendar.Data.CalendarDto
+
+@{
+	ViewBag.Title = Resources.Home;
+}
+
+<style type="text/css">
+	.vacationleave {
+		background-color: lightskyblue;
+	}
+
+	.sickleave {
+		background-color: deepskyblue;
+	}
+
+	.holiday {
+		background-color: dodgerblue;
+	}
+</style>
+
+<h2>@Resources.Calendar</h2>
+
+@using ( Html.BeginForm( "Index", "Home", FormMethod.Get ) )
+{
+	<p>
+		<input name="date" type="month" value="@Model.Date.ToString("yyyy-MM")" onchange="this.form.submit();" />
+	</p>
+}
+
+<table class="table">
+	<tr>
+		<th>@Model.Date.ToString( "Y" )</th>
+		@for ( int i = 1; i <= Model.DaysInMonth; i++ )
+		{
+			<th>
+				@i.ToString()
+			</th>
+		}
+	</tr>
+
+	@foreach ( var employee in Model.Employees )
+	{
+		<tr>
+			<th>
+				@employee.FullName
+			</th>
+			@foreach ( var vacationDay in employee.VacationDays )
+			{
+				<td class="@vacationDay.VacationStyle" title="@Html.DisplayFor( x=> vacationDay.VacationType )"></td>
+			}
+		</tr>
+	}
+
+</table>

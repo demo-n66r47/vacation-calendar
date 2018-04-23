@@ -1,0 +1,67 @@
+﻿@using VacationCalendar.Properties
+
+@model IEnumerable<VacationCalendar.Data.VacationDto>
+
+@{
+	ViewBag.Title = Resources.Vacations;
+}
+<h2>@ViewBag.Title</h2>
+
+<p>
+	@if ( User.IsEditAllowed() )
+	{
+		@Html.ActionLink( Resources.Create, "Create" );
+	}
+</p>
+<table class="table">
+	<tr>
+		<th>
+			@Html.DisplayNameFor( model => model.EmployeeFirstName )
+		</th>
+		<th>
+			@Html.DisplayNameFor( model => model.EmployeeLastName )
+		</th>
+		<th>
+			@Html.DisplayNameFor( model => model.DateFrom )
+		</th>
+		<th>
+			@Html.DisplayNameFor( model => model.DateTo )
+		</th>
+		<th>
+			@Html.DisplayNameFor( model => model.VacationType )
+		</th>
+		<th></th>
+	</tr>
+
+	@foreach ( var item in Model )
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor( modelItem => item.EmployeeFirstName )
+			</td>
+			<td>
+				@Html.DisplayFor( modelItem => item.EmployeeLastName )
+			</td>
+			<td>
+				@Html.DisplayFor( modelItem => item.DateFrom )
+			</td>
+			<td>
+				@Html.DisplayFor( modelItem => item.DateTo )
+			</td>
+			<td>
+				@Html.DisplayFor( modelItem => item.VacationType )
+			</td>
+			<td>
+				@Html.ActionLink( Resources.Details, "Details", new { id = item.ID } )
+				@if ( User.IsEditAllowed( item ) )
+				{
+					@Html.Raw( " | " );
+					@Html.ActionLink( Resources.Edit, "Edit", new { id = item.ID } );
+					@Html.Raw( " | " );
+					@Html.ActionLink( Resources.Delete, "Delete", new { id = item.ID } );
+				}
+			</td>
+		</tr>
+	}
+
+</table>

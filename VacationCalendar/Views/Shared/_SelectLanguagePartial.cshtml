@@ -1,0 +1,17 @@
+﻿@using VacationCalendar.Properties;
+@using System.Globalization;
+
+@{
+	var cultureItems = LocalizationHelper.SupportedUICultures
+		 .Select( c => new SelectListItem { Value = c.Name, Text = c.DisplayName, Selected = c.Name == CultureInfo.CurrentCulture.Name } )
+		 .ToList();
+	var returnUrl = string.IsNullOrEmpty( Context.Request.Path ) ? "~/" : $"~{Context.Request.Path}";
+}
+
+<div>
+	@using ( Html.BeginForm( "SetLanguage", "Home", new { ReturnUrl = returnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" } ) )
+	{
+		@Html.Label( "culture", Resources.Language )@:&nbsp;
+		@Html.DropDownList( "culture", cultureItems, new { onchange = "this.form.submit();" } )
+	}
+</div>

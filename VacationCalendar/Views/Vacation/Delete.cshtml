@@ -1,0 +1,71 @@
+﻿@using VacationCalendar.Properties
+
+@model VacationCalendar.Data.VacationDto
+
+@{
+	ViewBag.Title = Resources.Delete;
+}
+<h2>@ViewBag.Title</h2>
+
+<h3>@Resources.ConfirmDelete</h3>
+<div>
+	<h4>@Resources.Vacation</h4>
+	<hr />
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor( model => model.EmployeeFirstName )
+		</dt>
+
+		<dd>
+			@Html.DisplayFor( model => model.EmployeeFirstName )
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor( model => model.EmployeeLastName )
+		</dt>
+
+		<dd>
+			@Html.DisplayFor( model => model.EmployeeLastName )
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor( model => model.DateFrom )
+		</dt>
+
+		<dd>
+			@Html.DisplayFor( model => model.DateFrom )
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor( model => model.DateTo )
+		</dt>
+
+		<dd>
+			@Html.DisplayFor( model => model.DateTo )
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor( model => model.VacationType )
+		</dt>
+
+		<dd>
+			@Html.DisplayFor( model => model.VacationType )
+		</dd>
+
+	</dl>
+
+	@using ( Html.BeginForm() )
+	{
+		@Html.AntiForgeryToken()
+
+		@Html.ValidationSummary( true, "", new { @class = "text-danger" } )
+		@Html.HiddenFor( model => model.RowVersion )
+		@Html.HiddenFor( model => model.EmployeeID )
+		@Html.HiddenFor( model => model.EmployeeRowVersion )
+		@Html.HiddenFor( model => model.EmployeeOwnerID )
+		<div class="form-actions no-color">
+			<input type="submit" value="@Resources.Delete" class="btn btn-default" /> |
+			@Html.ActionLink( Resources.BackToList, "Index" )
+		</div>
+	}
+</div>
