@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="AdminUserName" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Admin</Value>
+      <Value Profile="(Default)">admin@example.com</Value>
     </Setting>
     <Setting Name="AdminPassword" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Admin@123456</Value>

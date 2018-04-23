@@ -25,7 +25,7 @@ namespace VacationCalendar.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Admin")]
+        [global::System.Configuration.DefaultSettingValueAttribute("admin@example.com")]
         public string AdminUserName {
             get {
                 return ((string)(this["AdminUserName"]));
